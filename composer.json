@@ -1,22 +1,22 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "morales2k/laravel-password-health-checker",
+    "description": "Laravel Password Health Checker is a package that intends to provide a validation rule to score how secure a password string is when validating password strings on registration forms.",
     "keywords": [
-        ":vendor_name",
+        "J.Morales",
         "laravel",
-        ":package_slug"
+        "laravel-password-health-checker"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com//laravel-password-health-checker",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "J.Morales",
+            "email": "jlm787@proton.me",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^7.4 | ^8.0 | ^8.1 | ^8.2 | ^8.3 | ^8.4",
         "spatie/laravel-package-tools": "^1.16",
         "illuminate/contracts": "^10.0||^11.0"
     },
@@ -30,18 +30,17 @@
         "pestphp/pest-plugin-laravel": "^3.0",
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan-deprecation-rules": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.3",
-        "spatie/laravel-ray": "^1.35"
+        "phpstan/phpstan-phpunit": "^1.3"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "EffectiX\\LPHC\\": "src/",
+            "EffectiX\\LPHC\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "EffectiX\\LPHC\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "EffectiX\\LPHC\\LPHCServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LPHC": "EffectiX\\LPHC\\Facades\\LPHC"
             }
         }
     },
