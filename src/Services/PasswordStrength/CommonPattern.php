@@ -30,7 +30,7 @@ class CommonPattern
         while(($line = fgets($file)) !== false) {
             $line = trim($line);
             if (str_contains($string, $line) !== false) {
-                $score -= 2.0; // Apply penalty if a common pattern is found and continue scanning for other patterns.
+                $score -= 1.0; // Apply penalty if a common pattern is found and continue scanning for other patterns.
             }
 
             if ($string === $line){

@@ -13,13 +13,13 @@ class Variety
 
         switch ($characterTypes) {
             case 4:
-                $typeScore = 30;
+                $typeScore = 35;
             case 3:
-                $typeScore = 25;
+                $typeScore = 30;
             case 2:
-                $typeScore = 20;
+                $typeScore = 25;
             case 1:
-                $typeScore = 10;
+                $typeScore = 15;
             default:
                 $typeScore = 0;
         }
