@@ -1,5 +1,5 @@
 <?php
 
-use EffectiX\LPS\Tests\TestCase;
+use EffectiX\PasswordChecker\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

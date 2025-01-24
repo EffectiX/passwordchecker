@@ -1,6 +1,6 @@
 <?php
 
-use EffectiX\LPS\Rules\PasswordScoreRule;
+use EffectiX\PasswordChecker\Rules\PasswordScoreRule;
 use Illuminate\Support\Facades\Validator;
 
 it('uses password_security_score validation rule correctly with globally configured threshold in the validator and passes', function () {

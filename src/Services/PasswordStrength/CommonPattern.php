@@ -1,29 +1,46 @@
 <?php
-namespace EffectiX\LPS\Services\PasswordStrength;
+namespace EffectiX\PasswordChecker\Services\PasswordStrength;
 
 use Illuminate\Support\Facades\Cache;
 
 class CommonPattern
 {
-    protected static $commonPasswords = [];
+    protected static string $commonPasswords = __DIR__ . '/../../Common/passwords.txt';
+    protected static string $commonNames = __DIR__ . '/../../Common/names.txt';
+
+    protected static string $commonSymbols = __DIR__ . '/../../Common/symbols.txt';
+
+    protected static string $commonNumericals = __DIR__ . '/../../Common/numerical.txt';
 
     /**
-     * Load the common passwords from the txt file into the array.
-     * This is done only once and caches the result using Cache.
+     * @param  string  $filePath
+     * @param  string  $string
+     * @return float
+     * @throws \Exception
      */
-    protected static function loadCommonPasswords()
+    private static function processFile(string $filePath, string $string): float
     {
-        return self::$commonPasswords = Cache::remember('common_passwords', 1440, function () {
-            $filePath = __DIR__ . '/../../Common/passwords.txt';
+        $string = trim($string);
+        if(!file_exists($filePath)) {
+            throw new \Exception('File not found: ' . $filePath);
+        }
+        $file = fopen($filePath, 'r');
 
-            if (file_exists($filePath)) {
-                $contents = file_get_contents($filePath);
-
-                return array_map('trim', explode(PHP_EOL, $contents));
+        $score = 0.0;
+        while(($line = fgets($file)) !== false) {
+            $line = trim($line);
+            if (str_contains($string, $line) !== false) {
+                $score -= 2.0; // Apply penalty if a common pattern is found and continue scanning for other patterns.
             }
 
-            return [];
-        });
+            if ($string === $line){
+                $score = -100.0;// apply severe penalty for exact matches and break out of the loop.
+                break;
+            }
+        }
+        fclose($file);
+
+        return $score;
     }
 
     /**
@@ -35,21 +52,16 @@ class CommonPattern
      */
     public static function calculate(string $string): float
     {
-        // Load common passwords if they haven't been loaded yet
-        self::loadCommonPasswords();
-        $score = 0;
-        // Check if the password contains any common pattern
-        foreach (self::$commonPasswords as $pattern) {
-            if (str_contains($string, $pattern) !== false) {
-                $score -= 2; // Apply penalty if a common pattern is found
-            }
+        $score = self::processFile(self::$commonPasswords, $string)
+            + self::processFile(self::$commonNames, $string)
+            + self::processFile(self::$commonSymbols, $string)
+            + self::processFile(self::$commonNumericals, $string);
 
-            if ($string === $pattern){
-                $score = -100;// apply severe penalty for exact match
-                break;
-            }
+        // Ensure maximum penalty of -100.
+        if ($score < -100.0) {
+            $score = -100.0;
         }
 
-        return $score; // return total score
+        return $score;
     }
 }

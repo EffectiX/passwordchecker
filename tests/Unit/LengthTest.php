@@ -1,12 +1,12 @@
 <?php
 
-use EffectiX\LPS\Facades\LPSLength;
+use EffectiX\PasswordChecker\Facades\Length;
 
 it('can evaluate length in a string', function() {
-    $value = LPSLength::calculate('$password.dead');
-    $value2 = LPSLength::calculate('password');
-    $value3 = LPSLength::calculate('#myPass789');
-    $value4 = LPSLength::calculate('#R@nd0m!Str1ngz.RuleDaWorldWideWeb$2025');
+    $value = Length::calculate('$password.dead');
+    $value2 = Length::calculate('password');
+    $value3 = Length::calculate('#myPass789');
+    $value4 = Length::calculate('#R@nd0m!Str1ngz.RuleDaWorldWideWeb$2025');
 
     expect($value)->toBe(14.0)
     ->and($value2)->toBe(10.0)

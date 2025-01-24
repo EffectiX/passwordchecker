@@ -1,24 +1,22 @@
 {
-    "name": "effectix/laravel-password-strength",
-    "description": "Laravel Password Strength Check is a package that intends to provide a validation rule to score how secure a password string is when validating password strings on registration forms.",
-    "keywords": [
-        "J.Morales",
-        "laravel",
-        "laravel-password-health-checker"
-    ],
-    "homepage": "https://github.com//laravel-password-health-checker",
+    "name": "effectix/passwordchecker",
+    "description": "A Laravel package for robust password strength validation.",
     "license": "MIT",
     "authors": [
         {
-            "name": "J.Morales",
-            "email": "jlm787@proton.me",
+            "name": "EffectiX",
+            "email": "jlm@effectix.net",
+            "homepage": "https://facebook.com/EffectixWeb",
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/EffectiX/passwordchecker",
+    "keywords": [
+        "Laravel",
+        "PasswordChecker"
+    ],
     "require": {
-        "php": "^8.2 | ^8.3 | ^8.4",
-        "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/support": "~7|~8|~9|~10|~11"
     },
     "require-dev": {
         "larastan/larastan": "^2.9",
@@ -35,14 +33,24 @@
     },
     "autoload": {
         "psr-4": {
-            "EffectiX\\LPS\\": "src/",
-            "EffectiX\\LPS\\Database\\Factories\\": "database/factories/"
+            "EffectiX\\PasswordChecker\\": "src/",
+            "EffectiX\\PasswordChecker\\Tests\\": "tests/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "EffectiX\\LPS\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EffectiX\\PasswordChecker\\PasswordCheckerServiceProvider"
+            ],
+            "aliases": {
+                "PasswordChecker": "EffectiX\\PasswordChecker\\Facades\\PasswordChecker"
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {
@@ -52,27 +60,5 @@
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "EffectiX\\LPS\\LPSServiceProvider"
-            ],
-            "aliases": {
-                "LPSEntropy": "EffectiX\\LPS\\Facades\\LPSEntropy",
-                "LPSLength": "EffectiX\\LPS\\Facades\\LPSLength",
-                "LPSCommonPattern": "EffectiX\\LPS\\Facades\\LPSCommonPattern",
-                "LPSVariety": "EffectiX\\LPS\\Facades\\LPSVariety"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace EffectiX\LPS\Rules;
+namespace EffectiX\PasswordChecker\Rules;
 
-use EffectiX\LPS\Facades\LPSCommonPattern;
-use EffectiX\LPS\Facades\LPSLength;
-use EffectiX\LPS\Facades\LPSVariety;
-use EffectiX\LPS\Facades\LPSEntropy;
+use EffectiX\PasswordChecker\Facades\CommonPattern;
+use EffectiX\PasswordChecker\Facades\Length;
+use EffectiX\PasswordChecker\Facades\Variety;
+use EffectiX\PasswordChecker\Facades\Entropy;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class PasswordScoreRule implements ValidationRule
@@ -36,10 +36,10 @@ class PasswordScoreRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        $entropyScore = LPSEntropy::calculate($value);
-        $lengthScore = LPSLength::calculate($value);
-        $varietyScore = LPSVariety::calculate($value) * 2;
-        $patternScore = LPSCommonPattern::calculate($value);
+        $entropyScore = Entropy::calculate($value);
+        $lengthScore = Length::calculate($value);
+        $varietyScore = Variety::calculate($value) * 2;
+        $patternScore = CommonPattern::calculate($value);
 
         $score = $entropyScore + $lengthScore + $varietyScore + $patternScore;
 

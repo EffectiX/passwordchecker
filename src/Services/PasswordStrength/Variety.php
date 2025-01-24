@@ -1,5 +1,5 @@
 <?php
-namespace EffectiX\LPS\Services\PasswordStrength;
+namespace EffectiX\PasswordChecker\Services\PasswordStrength;
 
 class Variety
 {

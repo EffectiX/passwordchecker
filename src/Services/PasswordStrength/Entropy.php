@@ -1,5 +1,5 @@
 <?php
-namespace Effectix\LPS\Services\PasswordStrength;
+namespace Effectix\PasswordChecker\Services\PasswordStrength;
 
 class Entropy {
     /**
