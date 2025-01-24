@@ -1,9 +1,9 @@
 <?php
 
-namespace EffectiX\LPHC\Tests;
+namespace EffectiX\LPS\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use EffectiX\LPHC\LPHCServiceProvider;
+use EffectiX\LPS\LPSServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -15,12 +15,15 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LPHCServiceProvider::class,
+            LPSServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
+        config()->set('cache.default', 'file');
+        putenv('CACHE_DRIVER=file');
+        config()->set('password-health-checker.threshold', 25);
     }
 }

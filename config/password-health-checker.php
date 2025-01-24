@@ -1,7 +1,6 @@
 <?php
 
-// config for EffectiX/LPHC
 return [
-    // entropy score based on Shannon's entropy calculation.
-    'threshold' => 4.5,
+    // Minimum score for the password strength calculation validation rule
+    'threshold' => 25.0,
 ];

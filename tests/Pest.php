@@ -1,6 +1,5 @@
 <?php
 
-use EffectiX\LPHC\Tests\TestCase;
+use EffectiX\LPS\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
-

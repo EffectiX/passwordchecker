@@ -1,6 +1,6 @@
 {
-    "name": "morales2k/laravel-password-health-checker",
-    "description": "Laravel Password Health Checker is a package that intends to provide a validation rule to score how secure a password string is when validating password strings on registration forms.",
+    "name": "effectix/laravel-password-strength",
+    "description": "Laravel Password Strength Check is a package that intends to provide a validation rule to score how secure a password string is when validating password strings on registration forms.",
     "keywords": [
         "J.Morales",
         "laravel",
@@ -16,14 +16,15 @@
         }
     ],
     "require": {
-        "php": "^7.4 | ^8.0 | ^8.1 | ^8.2 | ^8.3 | ^8.4",
+        "php": "^8.2 | ^8.3 | ^8.4",
         "spatie/laravel-package-tools": "^1.16",
         "illuminate/contracts": "^10.0||^11.0"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
-        "larastan/larastan": "^2.9",
+        "nunomaduro/larastan": "^2.9",
         "orchestra/testbench": "^9.0.0||^8.22.0",
         "pestphp/pest": "^3.0",
         "pestphp/pest-plugin-arch": "^3.0",
@@ -34,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "EffectiX\\LPHC\\": "src/",
-            "EffectiX\\LPHC\\Database\\Factories\\": "database/factories/"
+            "EffectiX\\LPS\\": "src/",
+            "EffectiX\\LPS\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EffectiX\\LPHC\\Tests\\": "tests/",
+            "EffectiX\\LPS\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -62,10 +63,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EffectiX\\LPHC\\LPHCServiceProvider"
+                "EffectiX\\LPS\\LPSServiceProvider"
             ],
             "aliases": {
-                "LPHC": "EffectiX\\LPHC\\Facades\\LPHC"
+                "LPSEntropy": "EffectiX\\LPS\\Facades\\LPSEntropy",
+                "LPSLength": "EffectiX\\LPS\\Facades\\LPSLength",
+                "LPSCommonPattern": "EffectiX\\LPS\\Facades\\LPSCommonPattern",
+                "LPSVariety": "EffectiX\\LPS\\Facades\\LPSVariety"
             }
         }
     },
