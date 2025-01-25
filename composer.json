@@ -4,25 +4,25 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "EffectiX",
+            "name": "Effectix",
             "email": "jlm@effectix.net",
             "homepage": "https://facebook.com/EffectixWeb",
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/EffectiX/passwordchecker",
+    "homepage": "https://github.com/Effectix/passwordchecker",
     "keywords": [
         "Laravel",
         "PasswordChecker"
     ],
     "require": {
-        "illuminate/support": "~7|~8|~9|~10|~11"
+        "php": "^8.2 | ^8.3 | ^8.4",
+        "illuminate/support": "~10|~11"
     },
     "require-dev": {
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
-        "nunomaduro/larastan": "^2.9",
         "orchestra/testbench": "^9.0.0||^8.22.0",
         "pestphp/pest": "^3.0",
         "pestphp/pest-plugin-arch": "^3.0",
@@ -33,17 +33,17 @@
     },
     "autoload": {
         "psr-4": {
-            "EffectiX\\PasswordChecker\\": "src/",
-            "EffectiX\\PasswordChecker\\Tests\\": "tests/"
+            "Effectix\\PasswordChecker\\": "src/",
+            "Effectix\\PasswordChecker\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "EffectiX\\PasswordChecker\\PasswordCheckerServiceProvider"
+                "Effectix\\PasswordChecker\\PasswordCheckerServiceProvider"
             ],
             "aliases": {
-                "PasswordChecker": "EffectiX\\PasswordChecker\\Facades\\PasswordChecker"
+                "PasswordChecker": "Effectix\\PasswordChecker\\Facades\\PasswordChecker"
             }
         }
     },

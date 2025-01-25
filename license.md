@@ -1,7 +1,7 @@
 GNU Affero General Public License
 =================================
 
-_Copyright © 2025 Jorge Morales, DBA EffectiX Web Development &lt;<https://github.com/EffectiX>&gt;_
+_Copyright © 2025 Jorge Morales, DBA Effectix Web Development &lt;<https://github.com/Effectix>&gt;_
 
 Everyone is permitted to copy and distribute verbatim copies
 of this license document, but changing it is not allowed.

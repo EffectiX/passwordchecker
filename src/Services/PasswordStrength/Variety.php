@@ -1,5 +1,6 @@
 <?php
-namespace EffectiX\PasswordChecker\Services\PasswordStrength;
+
+namespace Effectix\PasswordChecker\Services\PasswordStrength;
 
 class Variety
 {
@@ -39,7 +40,7 @@ class Variety
 
         foreach ($array as $value) {
             // Track character occurrences to handle repeated characters
-            if (!isset($charCount[$value])) {
+            if (! isset($charCount[$value])) {
                 $charCount[$value] = 0;
             }
             $charCount[$value]++;
