@@ -2,10 +2,6 @@
 
 namespace Effectix\PasswordChecker;
 
-use Effectix\PasswordChecker\Facades\CommonPattern;
-use Effectix\PasswordChecker\Facades\Entropy;
-use Effectix\PasswordChecker\Facades\Length;
-use Effectix\PasswordChecker\Facades\Variety;
 use Illuminate\Support\ServiceProvider;
 
 class PasswordCheckerServiceProvider extends ServiceProvider
