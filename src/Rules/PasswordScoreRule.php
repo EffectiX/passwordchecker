@@ -1,25 +1,25 @@
 <?php
 
-namespace EffectiX\PasswordChecker\Rules;
+namespace Effectix\PasswordChecker\Rules;
 
-use EffectiX\PasswordChecker\Facades\CommonPattern;
-use EffectiX\PasswordChecker\Facades\Length;
-use EffectiX\PasswordChecker\Facades\Variety;
-use EffectiX\PasswordChecker\Facades\Entropy;
+use Effectix\PasswordChecker\Services\PasswordStrength\CommonPattern;
+use Effectix\PasswordChecker\Services\PasswordStrength\Entropy;
+use Effectix\PasswordChecker\Services\PasswordStrength\Length;
+use Effectix\PasswordChecker\Services\PasswordStrength\Variety;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class PasswordScoreRule implements ValidationRule
 {
-    protected null|float $threshold;
+    protected ?float $threshold;
+
     protected bool $debug;
 
     /**
      * Create a new rule instance.
      *
-     * @param  float|null  $threshold
-     * @param  boolean  $debug
+     * @param  bool  $debug
      */
-    public function __construct(float $threshold = null, $debug = false)
+    public function __construct(?float $threshold = null, $debug = false)
     {
         $this->debug = $debug;
 
@@ -28,11 +28,6 @@ class PasswordScoreRule implements ValidationRule
 
     /**
      * Validate the given value.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  \Closure  $fail
-     * @return void
      */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
@@ -46,20 +41,23 @@ class PasswordScoreRule implements ValidationRule
         if ($this->debug) {
             $data = [
                 $attribute => $value,
-                'score' => $score." = ".$entropyScore." + ".$lengthScore." + ".$varietyScore." + ".$patternScore,
+                'score' => $score.' = '.$entropyScore.' + '.$lengthScore.' + '.$varietyScore.' + '.$patternScore,
                 'threshold' => $this->threshold,
                 'result' => $score < $this->threshold ? 'Fail' : 'Pass',
             ];
-            print_r($data);
+            var_dump($data);
         }
 
         if ($score < $this->threshold) {
-            $fail($this->message($score));
+            $fail('effectix/password-checker::validation.password_score')->translate([
+                'score' => $score,
+                'threshold' => $this->threshold,
+            ]);
         }
     }
 
-    public function message($score): string
+    public function message(): string
     {
-        return "The :attribute field had a score of $score. It must be at least ".$this->threshold.". Use a stronger password by including upper and lowercase letters, numbers and symbols. Use spaces at most once. Be as random as possible and use the longest thing you can come up with.";
+        return 'The :attribute field had a score of :score. It must be greater than :threshold. Use a stronger password by including upper and lowercase letters, numbers and symbols. Use spaces at most once. Be as random as possible and use the longest thing you can come up with.';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use EffectiX\PasswordChecker\Facades\Entropy;
+use Effectix\PasswordChecker\Services\PasswordStrength\Entropy;
 
 it('calculates the correct entropy for given strings', function () {
     $entropy = Entropy::calculate('password');
@@ -30,4 +30,3 @@ it('will return 0 for a string with multiple characters that are all the same ch
     $entropy = Entropy::calculate('1111111111111111');
     expect($entropy)->toEqual(0.0);
 })->group('EntropyTest');
-
