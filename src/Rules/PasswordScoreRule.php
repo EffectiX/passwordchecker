@@ -23,7 +23,7 @@ class PasswordScoreRule implements ValidationRule
     {
         $this->debug = $debug;
 
-        $this->threshold = (float) ($threshold ?? config('password-health-checker.threshold'));
+        $this->threshold = (float) ($threshold ?? config('passwordchecker.threshold'));
     }
 
     /**
