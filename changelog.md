@@ -2,6 +2,13 @@
 
 All notable changes to `PasswordChecker` will be documented in this file.
 
+## Version 1.0.2
+### Added
+- 🆕 Add some github actions.
+
+### Fixed
+- 🐛 Fixed the `passwordchecker` config file reference inside the rule constructor when getting the default config threshold.
+
 ## Version 1.0.1
 
 ### Added
