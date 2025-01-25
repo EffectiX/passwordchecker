@@ -1,40 +1,37 @@
 <?php
-namespace EffectiX\PasswordChecker\Services\PasswordStrength;
 
-use Illuminate\Support\Facades\Cache;
+namespace Effectix\PasswordChecker\Services\PasswordStrength;
 
 class CommonPattern
 {
-    protected static string $commonPasswords = __DIR__ . '/../../Common/passwords.txt';
-    protected static string $commonNames = __DIR__ . '/../../Common/names.txt';
+    protected static string $commonPasswords = __DIR__.'/../../Common/passwords.txt';
 
-    protected static string $commonSymbols = __DIR__ . '/../../Common/symbols.txt';
+    protected static string $commonNames = __DIR__.'/../../Common/names.txt';
 
-    protected static string $commonNumericals = __DIR__ . '/../../Common/numerical.txt';
+    protected static string $commonSymbols = __DIR__.'/../../Common/symbols.txt';
+
+    protected static string $commonNumericals = __DIR__.'/../../Common/numerical.txt';
 
     /**
-     * @param  string  $filePath
-     * @param  string  $string
-     * @return float
      * @throws \Exception
      */
     private static function processFile(string $filePath, string $string): float
     {
         $string = trim($string);
-        if(!file_exists($filePath)) {
-            throw new \Exception('File not found: ' . $filePath);
+        if (! file_exists($filePath)) {
+            throw new \Exception('File not found: '.$filePath);
         }
         $file = fopen($filePath, 'r');
 
         $score = 0.0;
-        while(($line = fgets($file)) !== false) {
+        while (($line = fgets($file)) !== false) {
             $line = trim($line);
             if (str_contains($string, $line) !== false) {
                 $score -= 1.0; // Apply penalty if a common pattern is found and continue scanning for other patterns.
             }
 
-            if ($string === $line){
-                $score = -100.0;// apply severe penalty for exact matches and break out of the loop.
+            if ($string === $line) {
+                $score = -100.0; // apply severe penalty for exact matches and break out of the loop.
                 break;
             }
         }
@@ -46,8 +43,7 @@ class CommonPattern
     /**
      * Calculate the penalty based on common patterns.
      *
-     * @param string $string The password string
-     *
+     * @param  string  $string  The password string
      * @return float The penalty score
      */
     public static function calculate(string $string): float

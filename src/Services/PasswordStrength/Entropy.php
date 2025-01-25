@@ -1,12 +1,11 @@
 <?php
+
 namespace Effectix\PasswordChecker\Services\PasswordStrength;
 
-class Entropy {
+class Entropy
+{
     /**
      * Calculate the Shannon entropy of a given string.
-     *
-     * @param  string  $string
-     * @return float
      */
     public static function calculate(string $string): float
     {

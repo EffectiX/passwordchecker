@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="EffectiX Test Suite">
+        <testsuite name="Effectix Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

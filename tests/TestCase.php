@@ -1,10 +1,9 @@
 <?php
 
-namespace EffectiX\PasswordChecker\Tests;
+namespace Effectix\PasswordChecker\Tests;
 
-use EffectiX\PasswordChecker\Facades\PasswordChecker;
+use Effectix\PasswordChecker\PasswordCheckerServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use EffectiX\PasswordChecker\PasswordCheckerServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -1,5 +1,6 @@
 <?php
-namespace EffectiX\PasswordChecker\Services\PasswordStrength;
+
+namespace Effectix\PasswordChecker\Services\PasswordStrength;
 
 class Length
 {

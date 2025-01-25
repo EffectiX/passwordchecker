@@ -27,6 +27,14 @@ Via Composer
 ```bash
 composer require effectix/passwordchecker
 ```
+#### Configuration
+Run `artisan vendor:publish --provider="Effectix\PasswordChecker\PasswordCheckerServiceProvider"` to publish everything this package offers:
+- Password score Validation rule
+- Locale files for `es` and `en`
+- Config file
+
+Alternatively, you can publish the config file only:
+Run `artisan vendor:publish --tag=passwordchecker.config`  to publish the config file.
 
 ## Usage
 You can apply it as a validation rule like this:
@@ -39,7 +47,7 @@ $validated = $this->validate([
         ]);
 //...
 ```
-On your validation logic, call the `EffectiX\PasswordChecker\Rules\PasswordScoreRule` rule class and pass the score threshold you want to enforce on that validation.
+On your validation logic, call the `Effectix\PasswordChecker\Rules\PasswordScoreRule` rule class and pass the score threshold you want to enforce on that validation.
 
 If you run `artisan vendor:publish --tag=passwordchecker.config` you will get a config file where you can manage a default score threshold for all your uses of this rule, without specifying it in each validation usage.
 

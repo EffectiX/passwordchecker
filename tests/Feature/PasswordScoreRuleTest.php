@@ -1,15 +1,15 @@
 <?php
 
-use EffectiX\PasswordChecker\Rules\PasswordScoreRule;
+use Effectix\PasswordChecker\Rules\PasswordScoreRule;
 use Illuminate\Support\Facades\Validator;
 
 it('uses password_security_score validation rule correctly with globally configured threshold in the validator and passes', function () {
-    $data = ['passwordA' => '#R@nd0m!Str1ngz.RuleDaWorldWideWeb$2025',];
+    $data = ['passwordA' => '#R@nd0m!Str1ngz.RuleDaWorldWideWeb$2025'];
 
     $validator = Validator::make(
         $data,
         [
-            'passwordA' => ['required', 'string', new PasswordScoreRule()],
+            'passwordA' => ['required', 'string', new PasswordScoreRule],
         ]
     );
 
@@ -19,7 +19,7 @@ it('uses password_security_score validation rule correctly with globally configu
 it('uses default threshold validation rule correctly and fails', function () {
     $data['passwordB'] = 'password';
     $validator = Validator::make($data, [
-        'passwordB' => ['required', 'string', new PasswordScoreRule()],
+        'passwordB' => ['required', 'string', new PasswordScoreRule],
     ]);
 
     expect($validator->fails())->toBeTrue();
@@ -45,7 +45,7 @@ it('validates strings based on custom threshold for password security score on p
 });
 
 it('validates strings based on default threshold for password security score on random string', function () {
-    $rule = new PasswordScoreRule();
+    $rule = new PasswordScoreRule;
     $data = ['passwordE' => 'if!f74tgi!mk%KRpLbH'];
     $rules = ['passwordE' => $rule];
 
@@ -53,3 +53,28 @@ it('validates strings based on default threshold for password security score on 
     expect($validator->fails())->toBeFalse();
 });
 
+it('fails validation and presents error message "in English"', function () {
+    app()->setLocale('en');
+    $data = ['passwordF' => 'password'];
+    $validator = Validator::make($data, [
+        'passwordF' => ['required', 'string', new PasswordScoreRule(100)],
+    ]);
+
+    expect($validator->fails())
+        ->toBeTrue()
+        ->and($validator->errors()->first('passwordF'))
+        ->toContain('field had a score of');
+});
+
+it('fails validation and presents error message "en Español"', function () {
+    app()->setLocale('es');
+    $data = ['passwordF' => 'password'];
+    $validator = Validator::make($data, [
+        'passwordF' => ['required', 'string', new PasswordScoreRule(100)],
+    ]);
+
+    expect($validator->fails())
+        ->toBeTrue()
+        ->and($validator->errors()->first('passwordF'))
+        ->toContain('tuvo una puntuación de');
+});

@@ -1,6 +1,6 @@
 <?php
 
-use EffectiX\PasswordChecker\Facades\Variety;
+use Effectix\PasswordChecker\Services\PasswordStrength\Variety;
 
 it('can evaluate variety in a weak string', function () {
     $value = Variety::calculate('password');
@@ -8,7 +8,7 @@ it('can evaluate variety in a weak string', function () {
     expect($value)->toBeGreaterThan(0.0);
     expect($value)->toBe(2.5);
 })
-->group('VarietyTest');
+    ->group('VarietyTest');
 
 it('can evaluate variety in weak/mid strength string', function () {
     $value = Variety::calculate('#myPass789');
@@ -33,4 +33,3 @@ it('can evaluate variety in a good random string', function () {
     expect($value)->toBeGreaterThanOrEqual(9.5);
 })
     ->group('VarietyTest');
-

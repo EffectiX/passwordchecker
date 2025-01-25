@@ -2,3 +2,5 @@
 /.phpunit.cache/
 
 .idea/
+
+vendor/
