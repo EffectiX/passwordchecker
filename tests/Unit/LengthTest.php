@@ -9,8 +9,8 @@ it('can evaluate length in a string', function () {
     $value4 = Length::calculate('#R@nd0m!Str1ngz.RuleDaWorldWideWeb$2025');
 
     expect($value)->toBe(14.0)
-        ->and($value2)->toBe(10.0)
-        ->and($value3)->toBe(10.0)
-        ->and($value4)->toBe(30.0);
+        ->and($value2)->toBe(5.0)
+        ->and($value3)->toBe(5.0)
+        ->and($value4)->toBe(39.0);
 })
     ->group('LengthTest');

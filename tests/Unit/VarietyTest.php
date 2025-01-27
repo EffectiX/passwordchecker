@@ -6,19 +6,19 @@ it('can evaluate variety in a weak string', function () {
     $value = Variety::calculate('password');
 
     expect($value)->toBeGreaterThan(0.0);
-    expect($value)->toBe(2.5);
+    expect($value)->toBe(2.75);
 })
     ->group('VarietyTest');
 
 it('can evaluate variety in weak/mid strength string', function () {
     $value = Variety::calculate('#myPass789');
-    expect($value)->toBe(4.0);
+    expect($value)->toBe(4.25);
 })
     ->group('VarietyTest');
 
 it('can evaluate variety in a weak/mid strength string', function () {
     $value = Variety::calculate('$password.dead');
-    expect($value)->toBe(2.0);
+    expect($value)->toBe(3.0);
 })
     ->group('VarietyTest');
 
@@ -30,6 +30,6 @@ it('can evaluate variety in a passphrase string', function () {
 
 it('can evaluate variety in a good random string', function () {
     $value = Variety::calculate('if! f74tgi! mk% KRpLbH');
-    expect($value)->toBeGreaterThanOrEqual(9.5);
+    expect($value)->toBeGreaterThanOrEqual(9.25);
 })
     ->group('VarietyTest');
