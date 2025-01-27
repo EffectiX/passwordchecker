@@ -85,6 +85,6 @@ it('validates strings based on default threshold for password security score on 
     $rules = ['passwordE' => $rule];
 
     $validator = Validator::make($data, ['passwordE' => $rules]);
-    expect($validator->fails())->toBeTrue("We expect this to fail given the password lack of randomness and variety!");
+    expect($validator->fails())->toBeTrue('We expect this to fail given the password lack of randomness and variety!');
 
 });
