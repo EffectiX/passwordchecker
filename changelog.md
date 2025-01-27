@@ -2,6 +2,16 @@
 
 All notable changes to `PasswordChecker` will be documented in this file.
 
+## Version 1.1.1
+### Added
+- 🆕 Add additional test case for the password score rule
+
+### Changed
+- 🔧 Updated the scoring multipliers for entropy and length.
+- 🔧 Updated the length base score to make it equal to the length of the string being checked, past a certain minimum length.
+- 🔧 Updated the variety base score to make lowerCase characters less penalizing when repeated, and lowered the value of spaces counted from .5 to .25.
+- 🔧 Updated related tests as needed to adjust to the new scoring.
+
 ## Version 1.1.0
 
 ### Added

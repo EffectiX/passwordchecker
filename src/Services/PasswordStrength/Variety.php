@@ -39,7 +39,6 @@ class Variety
         $charCount = [];
 
         foreach ($array as $value) {
-            // Track character occurrences to handle repeated characters
             if (! isset($charCount[$value])) {
                 $charCount[$value] = 0;
             }
@@ -59,24 +58,24 @@ class Variety
             }
             // Handle spaces
             elseif (ctype_space($value)) {
-                $spaceCharCount += 0.5;
+                $spaceCharCount += 0.25;
             }
             // Handle special characters (anything not a letter, digit, or space)
             else {
-                $specialCharCount += 1; // Special chars are now worth 2 points
+                $specialCharCount += 1;
             }
         }
 
         foreach ($charCount as $char => $count) {
             if ($count > 1) {
                 if (ctype_alnum($char)) {
-                    $lowercaseCount -= 0.5 * ($count - 1);
+                    $lowercaseCount -= 0.25 * ($count - 1);
                     $uppercaseCount -= 0.5 * ($count - 1);
                     $digitCount -= 0.5 * ($count - 1);
                 }
             }
         }
 
-        return $lowercaseCount + $uppercaseCount + $digitCount + $specialCharCount + $spaceCharCount;
+        return max($lowercaseCount + $uppercaseCount + $digitCount + $specialCharCount + $spaceCharCount, 0);
     }
 }
