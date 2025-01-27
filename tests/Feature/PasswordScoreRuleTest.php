@@ -27,7 +27,6 @@ it('uses default threshold validation rule correctly and fails', function () {
 
 it('validates strings based on custom threshold for password security score on weak pass', function () {
     $data = ['passwordC' => 'password'];
-
     $rule = new PasswordScoreRule(20.0);
     $rules = ['passwordC' => $rule];
 
@@ -46,20 +45,21 @@ it('validates strings based on custom threshold for password security score on p
 
 it('validates strings based on default threshold for password security score on random string', function () {
     $rule = new PasswordScoreRule;
-    $data = ['passwordE' => 'if!f74tgi!mk%KRpLbH'];
+    $data = ['passwordE' => '#ngz.Ruif!f74tgi!mk%KRpL$bH'];
     $rules = ['passwordE' => $rule];
 
     $validator = Validator::make($data, ['passwordE' => $rules]);
-    expect($validator->fails())->toBeFalse();
+    expect($validator->fails())->toBe(false, $validator->errors()->first());
+
 });
 
 it('fails validation and presents error message "in English"', function () {
     app()->setLocale('en');
     $data = ['passwordF' => 'password'];
+
     $validator = Validator::make($data, [
         'passwordF' => ['required', 'string', new PasswordScoreRule(100)],
     ]);
-
     expect($validator->fails())
         ->toBeTrue()
         ->and($validator->errors()->first('passwordF'))
@@ -69,12 +69,22 @@ it('fails validation and presents error message "in English"', function () {
 it('fails validation and presents error message "en Español"', function () {
     app()->setLocale('es');
     $data = ['passwordF' => 'password'];
+
     $validator = Validator::make($data, [
         'passwordF' => ['required', 'string', new PasswordScoreRule(100)],
     ]);
-
     expect($validator->fails())
         ->toBeTrue()
         ->and($validator->errors()->first('passwordF'))
         ->toContain('tuvo una puntuación de');
+});
+
+it('validates strings based on default threshold for password security score on a not so random string', function () {
+    $rule = new PasswordScoreRule;
+    $data = ['passwordE' => '112233445566778899**//aabbccdd'];
+    $rules = ['passwordE' => $rule];
+
+    $validator = Validator::make($data, ['passwordE' => $rules]);
+    expect($validator->fails())->toBeTrue("We expect this to fail given the password lack of randomness and variety!");
+
 });
