@@ -2,10 +2,7 @@
 
 namespace Effectix\PasswordChecker\Rules;
 
-use Effectix\PasswordChecker\Services\PasswordStrength\CommonPattern;
-use Effectix\PasswordChecker\Services\PasswordStrength\Entropy;
-use Effectix\PasswordChecker\Services\PasswordStrength\Length;
-use Effectix\PasswordChecker\Services\PasswordStrength\Variety;
+use Effectix\PasswordChecker\Services\PasswordStrength\PasswordScorer;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class PasswordScoreRule implements ValidationRule
@@ -31,12 +28,7 @@ class PasswordScoreRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        $entropyScore = Entropy::calculate($value) * 2;
-        $lengthScore = Length::calculate($value) * 2;
-        $varietyScore = Variety::calculate($value) * 2;
-        $patternScore = CommonPattern::calculate($value);
-
-        $score = ($entropyScore + $lengthScore + $varietyScore + $patternScore) / 4;
+        $score = PasswordScorer::calculate($value);
 
         if ($this->debug) {
             $data = [
