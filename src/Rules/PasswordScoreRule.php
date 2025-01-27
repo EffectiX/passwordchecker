@@ -31,7 +31,7 @@ class PasswordScoreRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        $entropyScore = Entropy::calculate($value) * 2 ;
+        $entropyScore = Entropy::calculate($value) * 2;
         $lengthScore = Length::calculate($value) * 2;
         $varietyScore = Variety::calculate($value) * 2;
         $patternScore = CommonPattern::calculate($value);
@@ -45,7 +45,7 @@ class PasswordScoreRule implements ValidationRule
                 'threshold' => $this->threshold,
                 'result' => $score < $this->threshold ? 'Fail' : 'Pass',
             ];
-            $data = json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+            $data = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             var_dump($data);
 
         }
