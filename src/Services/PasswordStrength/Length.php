@@ -10,10 +10,8 @@ class Length
 
         if ($length >= 12) {
             return $length;
-        } elseif ($length <= 11) {
-            return 5;
         }
 
-        return 0;
+        return 5;
     }
 }
