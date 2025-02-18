@@ -51,7 +51,44 @@ On your validation logic, call the `Effectix\PasswordChecker\Rules\PasswordScore
 
 If you run `artisan vendor:publish --tag=passwordchecker.config` you will get a config file where you can manage a default score threshold for all your uses of this rule, without specifying it in each validation usage.
 
-⚠ Explicit score specification takes precedence over the configuration default. 
+⚠ Explicit score threshold specification takes precedence over the configuration default.
+
+## Included Password Strength Bar Livewire component
+The livewire component has been tested so far to work with Livewire v3 on a site using a Volt registration form. More tests and use cases to come later. 
+
+The score property is reactive, so it might cause some issues in some implementations. Maybe. I'm not totally certain.
+
+So long as you can pass the score to the component you should have no problems. Use it in your registration form like this:
+```bladehtml
+<div class="mt-4">
+    <x-input-label for="password" :value="__('Password')"/>
+
+    <input id="password"
+           class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"
+           type="password"
+           name="password"
+           required
+           autocomplete="new-password"
+           wire:model.live.debounce.500ms="password"
+    />
+
+    <livewire:EffectixPasswordCheckerPasswordStrengthBar :score="$score" />
+
+    <x-input-error :messages="$errors->get('password')" class="mt-2"/>
+</div>
+```
+Your parent livewire component if you are using volt, should contain something like this:
+```php
+public int $score = 0;
+
+public function updated($prop): void
+{
+    if($prop === 'password') {
+        $this->score = PasswordScorer::calculate($this->password);
+    }
+}
+```
+This will evaluate the score everytime the debounced update to the password model is hit. The reactive property of the child component will pick up the new score and show the bar accordingly.
 
 ## Change log
 
