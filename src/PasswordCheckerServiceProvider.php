@@ -5,7 +5,6 @@ namespace Effectix\PasswordChecker;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
-
 class PasswordCheckerServiceProvider extends ServiceProvider
 {
     /**

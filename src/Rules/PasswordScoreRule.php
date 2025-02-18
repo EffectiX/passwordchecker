@@ -9,10 +9,6 @@ class PasswordScoreRule implements ValidationRule
 {
     protected ?float $threshold;
 
-
-    /**
-     * @param  float|null  $threshold
-     */
     public function __construct(?float $threshold = null)
     {
 
@@ -33,5 +29,4 @@ class PasswordScoreRule implements ValidationRule
             ]);
         }
     }
-
 }
