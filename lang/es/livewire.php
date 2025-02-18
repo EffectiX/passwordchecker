@@ -1,4 +1,5 @@
 <?php
+
 return [
     'title' => 'Fortaleza de la Contraseña',
     'bar' => [

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'title' => 'Password Strength',
     'bar' => [

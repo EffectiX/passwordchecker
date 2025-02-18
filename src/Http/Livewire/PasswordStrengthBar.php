@@ -2,10 +2,8 @@
 
 namespace Effectix\PasswordChecker\Http\Livewire;
 
-use Effectix\PasswordChecker\Services\PasswordStrength\PasswordScorer;
 use Livewire\Attributes\Reactive;
 use Livewire\Component;
-use Livewire\Attributes\Wireable;
 
 class PasswordStrengthBar extends Component
 {
@@ -20,10 +18,6 @@ class PasswordStrengthBar extends Component
 
     public int $threshold = 0;
 
-    /**
-     * @param  int  $value
-     * @return void
-     */
     public function updateScore(int $value): void
     {
         $this->putTheScore($value);
@@ -44,6 +38,7 @@ class PasswordStrengthBar extends Component
 
         if ($this->score === 0) {
             $this->scoreMessage = __('effectix/password-checker::livewire.bar.type');
+
             return;
         }
 
@@ -64,12 +59,12 @@ class PasswordStrengthBar extends Component
             $this->barColor = 'bg-red-500 dark:bg-red-400';
         }
 
-        return;
     }
 
     public function render(): \Illuminate\View\View
     {
         $this->updateStrengthBar();
+
         return view('effectix/password-checker/password-strength-bar::livewire.password-strength-bar');
     }
 }
