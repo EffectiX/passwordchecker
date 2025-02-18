@@ -5,6 +5,7 @@ namespace Effectix\PasswordChecker;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
+
 class PasswordCheckerServiceProvider extends ServiceProvider
 {
     /**
@@ -12,7 +13,7 @@ class PasswordCheckerServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Livewire::component('password-strength-bar', \Effectix\PasswordChecker\Http\Livewire\PasswordStrengthBar::class);
+        Livewire::component('EffectixPasswordCheckerPasswordStrengthBar', \Effectix\PasswordChecker\Http\Livewire\PasswordStrengthBar::class);
 
         // Register view namespace
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'effectix/password-checker/password-strength-bar');
