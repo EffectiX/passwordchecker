@@ -2,6 +2,18 @@
 
 All notable changes to `PasswordChecker` will be documented in this file.
 
+## Version 1.2.0
+### Added
+- 🆕 Add livewire component with strength bar
+  - ℹ Pass a score parameter to the component to show a bar
+- 🆕 Added one more msg tier on the livewire component dynamic output
+- 🆕 Tests for the livewire component
+  - ℹ Assertions for http 200 and some texts based on predetermined scores and default threshold (25)
+### Changed
+- 🔧 Made the livewire component namespaced and more specific
+- 🔧 Enable livewire in pest test case
+  - pulled the pest livewire plugin also
+
 ## Version 1.1.1
 ### Added
 - 🆕 Add additional test case for the password score rule
@@ -18,7 +30,7 @@ All notable changes to `PasswordChecker` will be documented in this file.
 - 🆕 Add github actions.
 
 ### Changed
-- Some dependencies updated.
+- 🔧 Some dependencies updated.
 
 ## Version 1.0.2
 ### Added
