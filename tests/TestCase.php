@@ -3,6 +3,7 @@
 namespace Effectix\PasswordChecker\Tests;
 
 use Effectix\PasswordChecker\PasswordCheckerServiceProvider;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -16,6 +17,7 @@ class TestCase extends Orchestra
     {
         return [
             PasswordCheckerServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 
